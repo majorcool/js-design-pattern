@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login test</title>
+    <script>
+        //运用单一职责原则,创建对象和管理单例的逻辑分开
+        //创建对象的逻辑
+        var createLoginLayer = function(){
+            var div = document.createElement("div");
+            div.innerHTML('登录框');
+            div.style.display = 'none';
+            document.body.appendChild(div);
+            return div;
+        };
+        //创建iframe用于动态加载第三方页面
+        var createIframe = function(){
+            var iframe = document.createElement('iframe');
+            iframe.innerHTML("第三方页面");
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+            return iframe;
+        }
+        //管理单例的逻辑,不变的部分,封装在getSingle函数中
+        var getSingle = function(fn){
+            var result;
+            return function(){
+                return result || (result=fn.apply(this,arguments));
+            }
+        };
+        var createSingleLoginLayer = getSingle(createLoginLayer);
+        var createSingleIframe = getSingle(createIframe);
+        document.getElementById("loginBtn").onclick = function(){
+            var singleLoginLayer = createSingleLoginLayer();
+            var singleIframe = createSingleIframe();
+            singleIframe.src = 'http://www.baidu.com';
+            singleLoginLayer.style.display = "block";
+            singleIframe.style.display = "block";
+        };
+    </script>
+</head>
+<body>
+<button id="loginBtn">LOGIN</button>
+</body>
+</html>
