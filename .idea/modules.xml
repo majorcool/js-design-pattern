@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/singleton.iml" filepath="$PROJECT_DIR$/.idea/singleton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/design pattern.iml" filepath="$PROJECT_DIR$/.idea/design pattern.iml" />
     </modules>
   </component>
 </project>
